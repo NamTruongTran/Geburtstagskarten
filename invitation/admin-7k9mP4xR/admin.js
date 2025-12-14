@@ -451,33 +451,24 @@ function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor =
                             </p>
 
                             <!-- CTA Button -->
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                               <tr>
-                                <td align="center" style="padding: 0 0 20px;">
-                                  <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                <td align="center" style="padding:20px 0; text-align:center;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
                                     <tr>
-                                      <td bgcolor="${envelopeColor}"
+                                      <td align="center"
                                           style="background-color:${envelopeColor};
                                                  border-radius:6px;
-                                                 padding:12px 32px;">
-                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-                                          <tr>
-                                            <td style="padding-right:8px; font-size:18px;">
-                                              🎁
-                                            </td>
-                                            <td>
-                                              <a href="${cardUrl}"
-                                                 style="display:inline-block;
-                                                        font-size:18px;
-                                                        font-family: Arial, Helvetica, sans-serif;
-                                                        font-weight:bold;
-                                                        color:${envelopeTextColor};
-                                                        text-decoration:underline;">
-                                                Karte Öffnen
-                                              </a>
-                                            </td>
-                                          </tr>
-                                        </table>
+                                                 padding:14px 36px;">
+                                        <a href="${cardUrl}"
+                                           style="display:inline-block;
+                                                  font-size:18px;
+                                                  font-family:Arial, Helvetica, sans-serif;
+                                                  font-weight:bold;
+                                                  color:${envelopeTextColor};
+                                                  text-decoration:none;">
+                                          🎁 Karte öffnen
+                                        </a>
                                       </td>
                                     </tr>
                                   </table>
