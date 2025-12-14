@@ -403,14 +403,13 @@ function renderEmailTemplates() {
         `;
     }).join('');
 }
-
 function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor = '#E7CDA8', envelopeTextColor = '#5a4a3a', logoUrl = null) {
     const darkerColor = envelopeColor.replace('#', '');
     const r = parseInt(darkerColor.substr(0, 2), 16);
     const g = parseInt(darkerColor.substr(2, 2), 16);
     const b = parseInt(darkerColor.substr(4, 2), 16);
     const darkerShade = `#${Math.floor(r * 0.8).toString(16).padStart(2, '0')}${Math.floor(g * 0.8).toString(16).padStart(2, '0')}${Math.floor(b * 0.8).toString(16).padStart(2, '0')}`;
-
+    // <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
     return `<!DOCTYPE html>
 <html>
 <head>
@@ -419,7 +418,7 @@ function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor =
     <title>Alles gute zum Geburtstag Von ${senderName}</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         <tr>
             <td align="center" style="padding: 40px 20px;">
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -430,7 +429,7 @@ function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor =
                                 Von: ${senderName}
                             </p>
                             <h1 style="margin: 0; color: ${envelopeTextColor}; font-size: 32px; font-family: Georgia, 'Times New Roman', serif;">
-                                🎊Alles gute zum Geburtstag!🎊
+                                🎊 Geburtstag 🎊
                             </h1>
                         </td>
                     </tr>
