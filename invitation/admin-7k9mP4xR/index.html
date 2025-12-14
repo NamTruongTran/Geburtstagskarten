@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAB-Weihnachtskarten</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>🎁Geburtstag🎁</h1>
+                <p>Admin-Login</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="admin@beispiel.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Passwort</label>
+                    <input type="password" id="loginPassword" required placeholder="Passwort Eingeben">
+                </div>
+                <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                <div id="loginError" class="login-error" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin App (hidden until logged in) -->
+    <div id="adminApp" style="display: none;">
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
+        <div class="app-container">
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h1>🎄 Truong 🎄<br>Karten</h1>
+                    <p class="sidebar-subtitle">Admin Panel</p>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <button class="nav-tab active" data-tab="settings" onclick="switchTab('settings')">
+                        <span class="tab-icon">🎨</span>
+                        <span class="tab-label">Standardkonfiguration</span>
+                    </button>
+                    <button class="nav-tab" data-tab="friends" onclick="switchTab('friends')">
+                        <span class="tab-icon">👥</span>
+                        <span class="tab-label">Personen</span>
+                    </button>
+                    <button class="nav-tab" data-tab="links" onclick="switchTab('links')">
+                        <span class="tab-icon">🔗</span>
+                        <span class="tab-label">Link</span>
+                    </button>
+                    <button class="nav-tab" data-tab="emails" onclick="switchTab('emails')">
+                        <span class="tab-icon">📧</span>
+                        <span class="tab-label">Email Templates</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="status-bar">
+                        <span id="statusIndicator" class="status-indicator">●</span>
+                        <span id="statusText" class="status-text">Ready</span>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="logout()" style="width: 100%; margin-top: 10px;">🚪
+                        Logout</button>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="tab-content active" id="tab-settings">
+                    <div class="content-header">
+                        <h2>🎨 Standardkonfiguration</h2>
+                        <p class="content-subtitle">Standardkonfiguration für alle Karten</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="form-section">
+                            <h3>Sender Informationen</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="senderName">Dein Name</label>
+                                    <input type="text" id="senderName" placeholder="z.B, Nam Truong Tran">
+                                    <small>Der Name des Senders erscheint vorne auf dem Briefumschlag und vorne auf der
+                                        Karte</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Nachricht Standardkonfiguration</h3>
+                            <div class="form-group">
+                                <label for="cardFrontMessage">Kartenvorderseite (Kurztext)</label>
+                                <textarea id="cardFrontMessage" rows="2"
+                                    placeholder="UND EINEN ERFOLGREICHES Jahr 2026!"></textarea>
+                                <small>Kurzer Gruß auf der Kartenvorderseite</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardBackMessage">Kartenrückseite (Langtext)</label>
+                                <textarea id="cardBackMessage" rows="4"
+                                    placeholder="Ich wünsche dir alles gute Zum Geburtstag und ein erfolgreiches Jahr 2026 !"></textarea>
+                                <small>Längere persönliche Nachricht auf der Kartenrückseite</small>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Farbdesign</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="envelopeColor">Briefumschlag Farbe</label>
+                                    <input type="color" id="envelopeColor" value="#E7CDA8">
+                                </div>
+                                <div class="form-group">
+                                    <label for="envelopeTextColor">Textfarbe für den Briefumschlag (Vorne)</label>
+                                    <input type="color" id="envelopeTextColor" value="#5a4a3a">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="titleColor">Textfarbe für den Kartentitel (Vorne)</label>
+                                    <input type="color" id="titleColor" value="#2c5f2d">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Bild & Logo Standardkonfiguration</h3>
+                            <div class="form-group">
+                                <label for="globalLogoUrl">LOGO URL (Optional)</label>
+                                <input type="text" id="globalLogoUrl" placeholder="https://beispiel.com/logo.png">
+                                <small>Das Logo erscheint unten links auf der Vorderseite der Karte.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="globalImageUrl">BILD URL (Optional)</label>
+                                <input type="text" id="globalImageUrl" placeholder="https://beispiel.com/image.jpg">
+                                <small>Das Bild erscheint auf der Vorderseite der Karte.</small>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Signaturen</h3>
+                            <div class="form-group">
+                                <label for="signature1">Signatur 1 Bild URL (Optional)</label>
+                                <input type="text" id="signature1" placeholder="https://beispiel.com/signatur1.png">
+                                <small>Die Signatur befindet sich auf der Kartenrückseite unterhalb des Textes. Ist nur
+                                    eine Signatur vorhanden, wird sie zentriert.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="signature2">Signatur 2 Bild URL (Optional)</label>
+                                <input type="text" id="signature2" placeholder="https://beispiel.com/signatur2.png">
+                                <small>Wenn beide Signaturen gesetzt werden, dann erscheinen sie nebeneinander.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-friends">
+                    <div class="content-header">
+                        <h2>👥 Personen</h2>
+                        <button id="addFriendBtn" class="btn btn-success">➕ Personen hinzufügen</button>
+                    </div>
+                    <div class="content-body">
+                        <div id="friendsList" class="friends-list">
+                        </div>
+                        <div id="emptyState" class="empty-state">
+                            <p>📭 Noch keine Personen hinzugefügt. Klicke auf "Person Hinzufügen", um zu starten!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-links">
+                    <div class="content-header">
+                        <h2>🔗 Generierte Link</h2>
+                        <p class="content-subtitle">Teile personalisierte Links mit anderen Personen</p>
+                    </div>
+                    <div class="content-body">
+                        <div id="linksList" class="links-list">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-emails">
+                    <div class="content-header">
+                        <h2>📧 Email Templates</h2>
+                        <p class="content-subtitle">Kopiere diese E-Mail-Vorlage und füge sie in deinem E-Mail-Client
+                            ein.</p>
+                    </div>
+                    <div class="content-body">
+                        <div id="emailTemplatesList" class="email-templates-list">
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div id="friendModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Person hinzufügen</h3>
+                    <button class="modal-close" onclick="closeFriendModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editFriendIndex">
+                    <div class="form-group">
+                        <label for="friendName">Name der Person *</label>
+                        <input type="text" id="friendName" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="friendEmail">Email (Optional)</label>
+                        <input type="email" id="friendEmail" placeholder="mustermann@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="friendFrontMessage">Nachricht Kartenvorderseite (Optional)</label>
+                        <textarea id="friendFrontMessage" rows="2"
+                            placeholder="Frei lassen, falls die Standardkonfiguration verwendet werden soll."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="friendBackMessage">Nachricht Kartenrückseite (Optional)</label>
+                        <textarea id="friendBackMessage" rows="3"
+                            placeholder="Frei lassen, falls die Standardkonfiguration verwendet werden soll."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="friendEnvelopeColor">Briefumschlag Farbe</label>
+                            <input type="color" id="friendEnvelopeColor">
+                        </div>
+                        <div class="form-group">
+                            <label for="friendEnvelopeTextColor">Textfarbe für den Briefumschlag</label>
+                            <input type="color" id="friendEnvelopeTextColor">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="friendTitleColor">Textfarbe für den Kartentitel (Vorne)</label>
+                            <input type="color" id="friendTitleColor">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="friendCustomLogo">
+                            Eigenes Logo einfügen (Link einfügen, um Standard zu überschreiben)
+                        </label>
+                        <input type="text" id="friendLogoUrl" placeholder="LOGO URL"
+                            style="display:none; margin-top: 8px;">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="friendCustomCard">
+                            Eigenes Bild einfügen (Link einfügen, um Standard zu überschreiben)
+                        </label>
+                        <input type="text" id="friendImageUrl" placeholder="BILD URL"
+                            style="display:none; margin-top: 8px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="friendSignature1">Signatur 1 – Bild-URL (Link einfügen, um die Standardeinstellung
+                            zu ersetzen)</label>
+                        <input type="text" id="friendSignature1"
+                            placeholder="Frei lassen, falls die Standardkonfiguration verwendet werden soll.">
+                    </div>
+                    <div class="form-group">
+                        <label for="friendSignature2">Signatur 2 – Bild-URL (Link einfügen, um die Standardeinstellung
+                            zu ersetzen)</label>
+                        <input type="text" id="friendSignature2"
+                            placeholder="Frei lassen, falls die Standardkonfiguration verwendet werden soll.">
+                    </div>
+                    <!-- New -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="friendHideSignature1">
+                            Signatur 1 ausblenden
+                        </label>
+                        <small>Blendet die erste Unterschrift für diese Person aus (auch die globale).</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="friendHideSignature2">
+                            Signatur 2 ausblenden
+                        </label>
+                        <small>Blendet die zweite Unterschrift für diese Person aus (auch die globale).</small>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="friendHideSignatures">
+                            Signatur ausblenden (keine Unterschriften für diese Person anzeigen)
+                        </label>
+                        <small>
+                            Wenn aktiviert, werden für diese Person keine Signaturen angezeigt – auch nicht die
+                            globalen.
+                        </small>
+                    </div>
+                    <!-- New -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" onclick="closeFriendModal()">Abbrechen</button>
+                    <button id="saveFriendBtn" class="btn btn-primary">Person Speichern</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cardPreviewModal" class="card-preview-modal" onclick="closeCardPreview()">
+            <div class="card-preview-content" onclick="event.stopPropagation()">
+                <button class="card-preview-close" onclick="closeCardPreview()">×</button>
+                <iframe id="cardPreviewFrame" class="card-preview-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- End Admin App -->
+
+    <!-- Load Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
