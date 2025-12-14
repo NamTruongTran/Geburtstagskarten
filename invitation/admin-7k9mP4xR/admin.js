@@ -429,7 +429,7 @@ function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor =
                             <p style="margin: 0 0 12px 0; font-size: 14px; color: ${envelopeTextColor}; opacity: 0.8; font-family: 'Dancing Script', cursive;">
                                 Von: ${senderName}
                             </p>
-                            <h1 style="margin: 0; color: ${envelopeTextColor}; font-size: 32px; font-family: Georgia, 'Times New Roman', serif;">
+                            <h1 style="margin: 0; color: ${envelopeTextColor}; font-size: 25px; font-family: Georgia, 'Times New Roman', serif;">
                                 🎊 Geburtstag 🎊
                             </h1>
                         </td>
