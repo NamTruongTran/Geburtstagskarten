@@ -8,7 +8,7 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let appState = {
     globalSettings: {
         senderName: 'Nam Truong Tran',
-        cardFrontMessage: 'UND EINEN ERFOLGREICHES Jahr 2026 !',
+        cardFrontMessage: 'UND EIN ERFOLGREICHES Jahr 2026 !',
         cardBackMessage: 'Ich wünsche dir alles gute Zum Geburtstag und ein erfolgreiches Jahr 2026 !',
         envelopeColor: '#E7CDA8',
         envelopeTextColor: '#5a4a3a',
@@ -416,7 +416,7 @@ function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor =
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frohe Weihnachtenn Von ${senderName}</title>
+    <title>Alles gute zum Geburtstag Von ${senderName}</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">

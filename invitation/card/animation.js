@@ -185,7 +185,7 @@
 
         const cardMessage = document.querySelector('.card-message');
         if (cardMessage) {
-            const message = friend.customFrontMessage || globalSettings.cardFrontMessage || 'UND EINEN ERFOLGREICHEN START IN DAS NEUE JAHR!';
+            const message = friend.customFrontMessage || globalSettings.cardFrontMessage || 'UND EIN ERFOLGREICHES JAHR 2026 !';
             cardMessage.textContent = message;
         }
 
@@ -244,7 +244,7 @@
             const rawMessage =
                 friend.customBackMessage ||
                 globalSettings.cardBackMessage ||
-                'I wish you all the best for the future.';
+                'Ich wünsche dir alles gute Zum Geburtstag und ein erfolgreiches Jahr 2026 !';
 
             // --- Text in Zeilen aufteilen ---
             const lines = rawMessage.trim().split('\n');
