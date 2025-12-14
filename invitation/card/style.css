@@ -450,10 +450,15 @@ body.white {
 
     /* NEW */
     /* #mv_msg .envelope .card-front .card-title, */
-    #mv_msg .envelope .card-front .card-title {
+    /* #mv_msg .envelope .card-front .card-title {
         font-size: clamp(18px, 6vw, 26px);
         line-height: 1.15;
+    } */
+    #mv_msg .envelope .card-front .card-title {
+        font-size: clamp(14px, 4.5vw, 20px);
+        line-height: 1.2;
     }
+
 
     #mv_msg .envelope .card-front .card-message,
     #mv_msg .envelope .card-front .card-sender {
