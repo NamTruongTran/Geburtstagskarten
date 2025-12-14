@@ -418,7 +418,8 @@ function createEmailTemplate(recipientName, cardUrl, senderName, envelopeColor =
     <title>Alles gute zum Geburtstag Von ${senderName}</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+       style="width:100%; max-width:600px; margin:0 auto; background-color:#ffffff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
         <tr>
             <td align="center" style="padding: 40px 20px;">
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
